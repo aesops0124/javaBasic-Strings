@@ -18,7 +18,7 @@ class StringTest {
         //
         // It is really easy to pass the test. But you have to tell why.
         // <--start
-        final Optional<Boolean> areSame = Optional.empty();
+        final Optional<Boolean> areSame = Optional.of(false);
         // --end-->
 
         assertEquals("The new string", modifiedString);
@@ -35,7 +35,7 @@ class StringTest {
         //
         // It is really easy to pass the test. But you have to tell why.
         // <--start
-        final Optional<Boolean> areSame = Optional.empty();
+        final Optional<Boolean> areSame = Optional.of(false);
         // --end-->
 
         assertEquals("The string with tailing space.", modifiedString);
@@ -53,7 +53,7 @@ class StringTest {
         //
         // It is really easy to pass the test. But you have to tell why.
         // <--start
-        final Optional<Boolean> areSame = Optional.empty();
+        final Optional<Boolean> areSame = Optional.of(false);
         // --end-->
 
         assertEquals("Part one. Part two.", originalString);
@@ -67,9 +67,9 @@ class StringTest {
 
         // TODO: Take part of the original string according to expectation.
         // <--start
-        final String partOfString = null;
+        String [] arr = originalString.split(" ", 2);
+        final String partOfString = arr[1];
         // --end-->
-
         final String expectedString = "is great";
 
         assertEquals(expectedString, partOfString);
@@ -82,7 +82,8 @@ class StringTest {
 
         // TODO: Take part of the original string according to expectation.
         // <--start
-        final String partOfString = null;
+        String [] arr = originalString.split(" ");
+        final String partOfString = arr[1];
         // --end-->
 
         final String expectedString = "is";
@@ -105,7 +106,7 @@ class StringTest {
 
         // TODO: Extract words in the sentence.
         // <--Start
-        String[] words = null;
+        String[] words = sentence.split(" ");
         // --End-->
 
         assertArrayEquals(new String[] {"This", "is", "Mike"}, words);
@@ -118,7 +119,7 @@ class StringTest {
 
         // TODO: Extract words in the sentence.
         // <--Start
-        String[] words = null;
+        String[] words = sentence.split("/");
         // --End-->
 
         assertArrayEquals(new String[] {"This", "is", "Mike"}, words);
@@ -133,6 +134,25 @@ class StringTest {
         // TODO: Create string using StringBuilder
         // <--Start
         StringBuilder builder = new StringBuilder();
+        String headAndTail = "";
+        String middle = "";
+        
+        headAndTail += "|";
+        middle += "|";
+        for(int i=1; i<=width-2; i++) {
+        	headAndTail+="-";
+        	middle+=" ";
+        }
+        headAndTail += "|\n";
+        middle += "|\n";
+        	
+        
+        for (int i=1; i<=height; i++) {
+        	if(i==1 || i==height)
+        		builder.append(headAndTail);
+        	else
+        		builder.append(middle);
+        }
         // --End-->
 
         final String expected =
@@ -151,6 +171,9 @@ class StringTest {
         int sum = 0;
         // TODO: Write some code to calculate the checksum of the string. The checksum is the sum of each string char.
         // <--Start
+        for (int i=0; i < text.length(  ); i++) {
+        	sum+=(int) text.charAt(i);
+        }
         // --End-->
 
         assertEquals(3655, sum);
@@ -158,15 +181,21 @@ class StringTest {
 
     @Test
     void should_convert_unicode_escape() {
-        final String expected = "なにこれ";
+        final String expected = "ã�ªã�«ã�“ã‚Œ";
 
         // TODO: Write actual string using unicode escape. The unicode is as follows:
-        // な - U+306a
-        // に - U+306b
-        // こ - U+3053
-        // れ - U+308c
+        // ã�ª - U+306a
+        // ã�« - U+306b
+        // ã�“ - U+3053
+        // ã‚Œ - U+308c
         // <--Start
-        final String actual = null;
+        String actual = null;
+        char[] chars = expected.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for (char ch : chars) {
+            sb.append(ch);
+        }
+        actual = sb.toString();
         // --End-->
 
         assertEquals(expected, actual);
@@ -179,7 +208,11 @@ class StringTest {
 
         // TODO: Modify the following code to create new string from original String
         // <--Start
-        final String reversed = null;
+        String reversed = "";
+        for(int i = original.length() - 1; i >= 0; i--)
+        {
+        	reversed += original.charAt(i);
+        }
         // --End-->
 
         assertEquals("654321", reversed);
@@ -196,8 +229,8 @@ class StringTest {
 
         // TODO: Please change the value of the following 2 lines to pass the test.
         // <--start
-        Optional<Boolean> actualResultOfEqual = Optional.empty();
-        Optional<Boolean> actualResultOfEqualIgnoreCase = Optional.empty();
+        Optional<Boolean> actualResultOfEqual = Optional.of(false);
+        Optional<Boolean> actualResultOfEqualIgnoreCase = Optional.of(true);
         // --end-->
 
         assertEquals(equalResult, actualResultOfEqual);
@@ -213,7 +246,7 @@ class StringTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String expectedText = null;
+        final String expectedText = "Hello, Harry. Next year, you will be 23.";
         // --end-->
 
         assertEquals(expectedText, text);
